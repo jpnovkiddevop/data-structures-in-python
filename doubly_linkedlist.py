@@ -7,6 +7,17 @@ class Node:
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
+        
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+            new_node.prev = current
 
     def insert_at_beginning(self, data):
         new_node = Node(data)
@@ -57,6 +68,22 @@ class DoublyLinkedList:
                 return True#Node/key found and deleted
             current = current.next
         return False #Node/key not found
+    
+    def reverse(self):
+        if not self.head and self.head.next:
+            print("you cant reverse an empty or singular list")
+            
+        current = self.head
+        new_head = None
+        while current:
+            next_node = current.next
+            current.next = current.prev
+            current.prev = next_node
+            new_head = current
+            current = next_node
+            
+        self.head = new_head
+            
 
     def display_list(self):
         current = self.head
@@ -72,7 +99,9 @@ num_end = int(input("enter number to insert at end "))
 my_list.insert_at_end(num_end)
 my_num = int(input("enter number to insert at position "))
 position = int(input("enter valid position to insert it "))
+num_to_append = int(input("enter number to append "))
+my_list.append(num_to_append)
 my_list.insert_at_position(my_num, position)
-node_to_delete = int(input("enter the node you want to delete "))
-my_list.delete_node(node_to_delete)
+my_list.display_list()
+my_list.reverse()
 my_list.display_list()
