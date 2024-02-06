@@ -2,7 +2,6 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-
 class CircularLinkedList:
     def __init__(self):
         self.head = None
@@ -34,7 +33,6 @@ class CircularLinkedList:
         self.head = self.head.next
         self.tail.next = self.head
         
-    
     def display(self):
         if not self.head:
             print("Circular linked list is empty.")
@@ -44,7 +42,6 @@ class CircularLinkedList:
             current = current.next
         print(current.data)
             
-
 cll = CircularLinkedList()
 cll.append()
 print("list contains: ")
