@@ -40,6 +40,24 @@ class DoublyCircularLinkedlist:
             self.tail.next = new_node
             self.head = new_node
             
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.head.next == self.tail:
+            new_node.next = self.tail.next
+            new_node.prev = self.tail
+            self.head.prev = new_node
+            self.tail.next = new_node
+            self.tail = new_node
+        else:
+            current = self.head
+            while current.next != self.tail.next:
+                current = current.next
+            new_node.next = self.tail.next
+            new_node.prev = self.tail
+            self.head.prev = new_node
+            self.tail.next = new_node
+            self.tail = new_node
+            
     def display(self):
         if not self.head and self.head.next:
             print("you cant display an empty list")
@@ -57,4 +75,6 @@ dcll.display()
 dcll.insert_at_beginning(int(input('enter number to append at the beginning  ')))
 print('list after appending a node')
 dcll.display()       
-        
+print('list after inserting at the end')
+dcll.insert_at_end(9)  
+dcll.display()      
