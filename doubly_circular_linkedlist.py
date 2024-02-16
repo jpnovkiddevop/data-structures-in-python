@@ -58,6 +58,37 @@ class DoublyCircularLinkedlist:
             self.tail.next = new_node
             self.tail = new_node
             
+
+    def insert_at_position(self, data, pos):
+        new_node = Node(data)  # Creating a new node with the provided data
+
+        # If the list is empty or the position is 0, append to the beginning of the list
+        if not self.head or pos <= 0:
+            self.append(data)
+        else:
+            current = self.head
+            # Traverse the list until the position or the end of the list is reached
+            for _ in range(pos - 1):
+                if current.next:
+                    current = current.next
+                else:
+                    print("position out of range")
+                    break  # Break if the end of the list is reached before the desired position
+
+            # Insert the new node after the current node
+            next_node = current.next
+            current.next = new_node
+
+            # Update pointers for the new node
+            new_node.next = next_node
+            if next_node:
+                next_node.prev = new_node
+            new_node.prev = current
+
+            # Update the tail node if the new node is inserted at the end
+            if not next_node:
+                self.tail = new_node
+        
     def display(self):
         if not self.head and self.head.next:
             print("you cant display an empty list")
@@ -77,4 +108,7 @@ print('list after appending a node')
 dcll.display()       
 print('list after inserting at the end')
 dcll.insert_at_end(9)  
-dcll.display()      
+dcll.display()     
+print('list after inserting at specified position')
+dcll.insert_at_position(5, 3)
+dcll.display() 
