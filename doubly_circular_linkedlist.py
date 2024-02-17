@@ -88,6 +88,15 @@ class DoublyCircularLinkedlist:
             # Update the tail node if the new node is inserted at the end
             if not next_node:
                 self.tail = new_node
+                
+    def delete_at_beginning(self):
+        if not self.head:
+            print('you cant delete from an empty list')
+            
+        next_node = self.head.next
+        next_node.prev = self.tail.next
+        self.tail.next = next_node
+        self.head = next_node
         
     def display(self):
         if not self.head and self.head.next:
@@ -112,3 +121,6 @@ dcll.display()
 print('list after inserting at specified position')
 dcll.insert_at_position(5, 3)
 dcll.display() 
+print('list after deleting first element')
+dcll.delete_at_beginning()
+dcll.display()
