@@ -98,6 +98,17 @@ class DoublyCircularLinkedlist:
         self.tail.next = next_node
         self.head = next_node
         
+    def delete_at_end(self):
+        if not self.head:
+            print('you cant delete from an empty list')
+            
+        current = self.head
+        while current.next != self.tail.next:
+            current = current.next
+        current.prev.next = self.tail.next
+        self.tail = current.prev
+        self.head.prev = current.prev
+        
     def display(self):
         if not self.head and self.head.next:
             print("you cant display an empty list")
@@ -123,4 +134,7 @@ dcll.insert_at_position(5, 3)
 dcll.display() 
 print('list after deleting first element')
 dcll.delete_at_beginning()
+dcll.display()
+print('list after deleteing data at end')
+dcll.delete_at_end()
 dcll.display()
