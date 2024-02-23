@@ -98,31 +98,54 @@ class DoublyCircularLinkedlist:
         self.tail.next = next_node
         self.head = next_node
         
+
     def delete_at_end(self):
         if not self.head:
-            print('you cant delete from an empty list')
-            
+            raise Exception('Cannot delete from an empty list')
+
+        if self.head.next == self.head:  # Only one node in the list
+            self.head = None
+            return
+
         current = self.head
-        while current.next != self.tail.next:
+        while current.next != self.head:
             current = current.next
-        current.prev.next = self.tail.next
-        self.tail = current.prev
+        current.prev.next = self.head
         self.head.prev = current.prev
         
-    def display(self):
-        if not self.head and self.head.next:
-            print("you cant display an empty list")
-        
+    def delete_at_end(self):
+        if not self.head:
+            raise Exception('Cannot delete from an empty list')
+
+        if self.head.next == self.head:  # Only one node in the list
+            self.head = None
+            return
+
         current = self.head
-        while current != self.tail:
+        while current.next != self.head:
+            current = current.next
+        current.prev.next = self.head
+        self.head.prev = current.prev
+
+    def display(self):
+        if not self.head:
+            print("The list is empty")
+            return
+
+        current = self.head
+        while True:
             print(current.data, end=" -> ")
             current = current.next
-        print(current.data)  #print last node
+            if current == self.head:
+                break
+
+
     
 dcll = DoublyCircularLinkedlist()
 dcll.append()
 print('list before inserting at the beginning')
 dcll.display()
+print()
 dcll.insert_at_beginning(int(input('enter number to append at the beginning  ')))
 print('list after appending a node')
 dcll.display()       
