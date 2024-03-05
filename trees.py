@@ -43,5 +43,5 @@ if __name__ == "__main__":
     tree.insert(2)
 
     print("inorder traversal: ")
-    tree.inorder_traversal(tree.root)
+    tree.inorder_traversal(tree.root)#output: 1234
     print()
