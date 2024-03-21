@@ -36,7 +36,6 @@ class DoublyCircularLinkedlist:
         else:   
             new_node.next = self.head
             new_node.prev = self.tail
-            self.head.next.prev = new_node
             self.tail.next = new_node
             self.head = new_node
             
